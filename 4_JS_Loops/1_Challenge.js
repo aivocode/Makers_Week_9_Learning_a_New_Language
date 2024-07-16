@@ -7,4 +7,3 @@ const fizzbuzzUntil = (max) => {
 };
 
 fizzbuzzUntil(10);
-
