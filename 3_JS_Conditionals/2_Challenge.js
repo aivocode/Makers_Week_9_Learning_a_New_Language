@@ -4,9 +4,9 @@
 // Otherwise, Return the number itself.
 
 const fizzBuzz = (num) => {
-  if (num % 3 === 0 && num % 5 === 0) {
+  if (num % 3 == 0 && num % 5 == 0) {
     return "FizzBuzz";
-  } else if (num % 3 === 0) {
+  } else if (num % 3 == 0) {
     return "Fizz";
   } else if (num % 5 === 0) {
     return "Buzz";
@@ -14,21 +14,22 @@ const fizzBuzz = (num) => {
     return num;
   }
 };
+module.exports = {fizzBuzz};
 
-console.log(fizzBuzz(3));
-// 'Fizz'
+// console.log(fizzBuzz(3));
+// // 'Fizz'
 
-console.log(fizzBuzz(5));
-// 'Buzz'
+// console.log(fizzBuzz(5));
+// // 'Buzz'
 
-console.log(fizzBuzz(8));
-// 8
+// console.log(fizzBuzz(8));
+// // 8
 
-console.log(fizzBuzz(15));
-// 'FizzBuzz'
+// console.log(fizzBuzz(15));
+// // 'FizzBuzz'
 
-console.log(fizzBuzz(18));
-// 'Fizz'
+// console.log(fizzBuzz(18));
+// // 'Fizz'
 
-console.log(fizzBuzz(20));
-// 'Buzz'
+// console.log(fizzBuzz(20));
+// // 'Buzz'
