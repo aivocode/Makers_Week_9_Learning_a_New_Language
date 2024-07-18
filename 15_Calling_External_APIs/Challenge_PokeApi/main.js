@@ -1,3 +1,3 @@
 const fetchPokemon = require("./api.js");
 
-fetchPokemon("charizard").then((object) => console.log(object));
+fetchPokemon("pikachu").then((object) => console.log(object));
