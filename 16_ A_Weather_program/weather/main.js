@@ -12,9 +12,16 @@ async function main() {
   const weather = new Weather(client);
 
   weather.load("Bristol");
-  data = await weather.getWeatherData();
-
+  const data = await weather.getWeatherData();
   console.log(data);
+
+  const compare = await weather.compareWith("Vilnius");
+  console.log(compare);
+
+  const display = await weather.displayWeather();
+  console.log(display);
+
+  
 }
 
 main();

@@ -1,12 +1,12 @@
 const Weather = require("./weather.js");
 
-describe("class Weather test", () => {
+describe("class Weather test with WeatherClient mock", () => {
   it("getWeatherData()", (done) => {
-    const mockClient = {
+    const mockWeatherClient = {
       fetchWeatherData: jest.fn(),
     };
 
-    mockClient.fetchWeatherData.mockResolvedValueOnce({
+    mockWeatherClient.fetchWeatherData.mockResolvedValueOnce({
       coord: { lon: -71.1662, lat: 41.8334 },
       weather: [
         { id: 800, main: "Clear", description: "clear sky", icon: "01d" },
@@ -39,12 +39,14 @@ describe("class Weather test", () => {
       cod: 200,
     });
 
-    const weather = new Weather(mockClient);
+    const weather = new Weather(mockWeatherClient);
     weather.load("Bristol");
     expect(weather.city).toEqual("Bristol");
 
     weather.getWeatherData().then((object) => {
-      expect(mockClient.fetchWeatherData).toHaveBeenCalledWith(weather.city);
+      expect(mockWeatherClient.fetchWeatherData).toHaveBeenCalledWith(
+        weather.city
+      );
       expect(object).toEqual({
         coord: { lon: -71.1662, lat: 41.8334 },
         weather: [
@@ -76,6 +78,38 @@ describe("class Weather test", () => {
         id: 4931378,
         name: "Bristol",
         cod: 200,
+      });
+      done();
+    });
+  });
+});
+
+describe("class Weather test with WeatherUI mock", () => {
+  it("getWeatherData()", (done) => {
+    const mockWeatherUI = {
+      fetchWeatherData: jest.fn(),
+    };
+
+    mockWeatherUI.fetchWeatherData.mockResolvedValueOnce({
+      City: "Bristol",
+      Weather: "Clouds",
+      Temperature: 25.98,
+      Feels_like: 25.98,
+      Humidity: "58%",
+    });
+
+    const weather = new Weather(mockWeatherUI);
+    weather.load("Bristol");
+    expect(weather.city).toEqual("Bristol");
+
+    weather.getWeatherData().then((object) => {
+      expect(mockWeatherUI.fetchWeatherData).toHaveBeenCalledWith(weather.city);
+      expect(object).toEqual({
+        City: "Bristol",
+        Weather: "Clouds",
+        Temperature: 25.98,
+        Feels_like: 25.98,
+        Humidity: "58%",
       });
       done();
     });
