@@ -1,15 +1,18 @@
 class Pokedex {
-  constructor() {
+  constructor(client) {
+    this.client = client;
     this.pokemonArray = [];
   }
 
-  catch(pokemon) {
-    this.pokemonArray.push(pokemon);
-  }
+  catch = (name) => {
+    return this.client
+      .fetchPokemon(name)
+      .then((object) => this.pokemonArray.push(object));
+  };
 
-  all() {
+  all = () => {
     return this.pokemonArray;
-  }
+  };
 }
 
 module.exports = Pokedex;
